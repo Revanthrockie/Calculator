@@ -1,53 +1,59 @@
 
-const addition = document.getElementById('+');
-const subtraction = document.getElementById('-');
-const multiply = document.getElementById('x');
-const divide = document.getElementById('/');
 const ac = document.getElementById('ac');
-const enter = document.getElementById('equal');
-const display = document.getElementsByClassName('screen');
+const display = document.getElementById('screen');
 
+// let isOperator = false;
 
-let num1 = undefined;
-let num2 = undefined;
-let operator = undefined;
+let num1 = '';
+let num2 = '';
+let operator = '';
 
-let x =[];
-let y =[];
-
-
-
-// enter = document.addEventListener('click', )
-
-
-
-function operation(num1 , num2, operator){
-    switch(operator){
-        case '+':
-            add(num1, num2);
-        break;
-
-        case '-':
-            sub(num1, num2);
-        break;
-
-        case '*':
-            mul(num1, num2);
-        break;
-
-        case '/':
-            div(num1, num2);
-        break;
-
-        default:
-            return "fuck you";
-        break;
+// let arr =[];
+function pushValue(e){
+    const value = e.target.textContent;
+    if(!operator){
+        num1 += value;
+    }else{
+        num2 += value;
     }
+    display.value += value;
+}
+
+// function to check when the operator is clicked to assign num1 and num2 respectively
+function checkOperatorClicked(e){
+    const value = e.target.textContent;
+    if( value === '='){
+        operation();
+    }else{
+        operator = value;
+        display.value += value;
+    } 
 }
 
 
+function operation(){
+    const num1Value = parseFloat(num1);
+    console.log(num1Value);
+    const num2Value = parseFloat(num2);
+    console.log(num2Value);
 
+    if(operator === '+'){
+            display.value = add(num1Value, num2Value);
+    }else if(operator === '-'){
+            display.value = sub(num1Value, num2Value);
+    }else if(operator === '*'){
+            display.value = mul(num1Value, num2Value);
+    }else if(operator === '/'){
+            display.value = div(num1Value, num2Value);
+    }
 
+    console.log(display.value);
+    num1 = '';
+    num2 = '';
+    operator = '';
+}
+    
+   
 function add(a , b){
     return a + b;
 }
@@ -63,44 +69,21 @@ function mul(a , b){
 function div(a , b){
     return b === 0 ? "OOPS" : a / b;
 }
-
-
+  
 const button = document.querySelectorAll('.btn');
-button.forEach(btn => btn.addEventListener('click', assign));
+button.forEach(btn => btn.addEventListener('click', pushValue));
+// button.forEach(btn => btn.addEventListener('click', checkOperatorClicked ));
 
 
 const operate = document.querySelectorAll('.operator');
-operate.forEach(btn => btn.addEventListener('click', checkOperate));
+operate.forEach(btn => btn.addEventListener('click', checkOperatorClicked));
+// operate.forEach(btn => btn.addEventListener('click', checkOperate));
 
-function checkOperate(){
-    if(this.textContent === '+'){
-        operator = '+';
-    }else if(this.textContent === '-'){
-        operator = '-';
-    }else if(this.textContent === 'x'){
-        operator = '*';
-    }else if(this.textContent === '/'){
-        operator = '/'; 
-    }else if(this.textContent === 'AC'){
-        console.log('AC');
-    }else if(this.textContent === 'Equal'){
-        operation(num1, num2, operator);
-    }
-}
+const enter = document.getElementById('equal');
+enter.addEventListener('click', operation);
 
 
 
 
-function assign(){
-   x.push(this.textContent);
-   window.addEventListener('click', )
-   if(x.length > 0 && x.isEmtpy()){
-     num1 = parseFloat(x.join(''));
-     }else{
-        y.push(this.textContent);
-        num2 = parseFloat(y.join(''));
-        console.log(num2);
-    }
-}
 
 
