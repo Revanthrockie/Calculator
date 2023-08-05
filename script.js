@@ -1,7 +1,14 @@
 
 const ac = document.getElementById('ac');
 const display = document.getElementById('screen');
-
+const reset = document.getElementById('ac');
+reset.addEventListener('click', () => {
+    display.value = '';
+    console.log(display.value)
+    num1 = '';
+    num2 = '';
+}
+);
 // let isOperator = false;
 
 let num1 = '';
@@ -33,9 +40,7 @@ function checkOperatorClicked(e){
 
 function operation(){
     const num1Value = parseFloat(num1);
-    console.log(num1Value);
     const num2Value = parseFloat(num2);
-    console.log(num2Value);
 
     if(operator === '+'){
             display.value = add(num1Value, num2Value);
