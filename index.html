@@ -12,29 +12,34 @@
         <h1>Calculator</h1>
     </header>
 
-    <div class = "calculatorBody">
-        <input type="text" id="screen" disabled />
-        <button id = 'ac' >AC</button>
-
-        <div class = 'num top'>
-        <button class = 'btn'>7</button>
-        <button class = 'btn'>8</button>
-        <button class = 'btn'>9</button>
-        <button class = 'btn'>4</button>
-        <button class = 'btn'>5</button>
-        <button class = 'btn'>6</button>
-        <button class = 'btn'>1</button>
-        <button class = 'btn'>2</button>
-        <button class = 'btn'>3</button>
+    <div class = main>
+        <div class = "calculatorBody">
+            <div class = 'screen'>
+                <input type="text" id="screen" disabled />
+            </div>
+            <div class = top-btn>
+                <button class = 'topstf' id = 'ac' >AC</button>
+                <button class = 'topstf' id = 'delete'>Delete</button>
+            </div>
+            <div class = 'num top'>
+                <button class = 'btn'>7</button>
+                <button class = 'btn'>8</button>
+                <button class = 'btn'>9</button>
+                <button id = '/' class = 'operator'>/</button>
+                <button class = 'btn'>4</button>
+                <button class = 'btn'>5</button>
+                <button class = 'btn'>6</button>
+                <button id = 'x' class = 'operator'>x</button>
+                <button class = 'btn'>1</button>
+                <button class = 'btn'>2</button>
+                <button class = 'btn'>3</button>
+                <button id = "-" class = 'operator'>-</button>
+                <button class = 'btn' id=".">.</button>
+                <button class = 'btn'>0</button>
+                <button id = 'equal' class = 'operator'>=</button>
+                <button id = "+" class = 'operator'>+</button>
+            </div>
         </div>
-    
-        <button class = 'btn'>0</button>
-        <button class = 'btn'>00</button>
-        <button id = "+" class = 'operator'>+</button>
-        <button id = "-" class = 'operator'>-</button>
-        <button id = 'x' class = 'operator'>x</button>
-        <button id = '/' class = 'operator'>/</button>
-        <button id = 'equal' class = 'operator'>=</button>
     </div>
 
     <footer>
