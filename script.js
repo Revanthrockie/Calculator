@@ -1,29 +1,69 @@
-
+let num1 = '';
+let num2 = '';
+let operator = '';
+let runCalculation = false;
 const ac = document.getElementById('ac');
 const display = document.getElementById('screen');
+const deleteBtn = document.getElementById('delete');
+
+// AC - clears out entire value 
 const reset = document.getElementById('ac');
 reset.addEventListener('click', () => {
     display.value = '';
     console.log(display.value)
     num1 = '';
     num2 = '';
+    operator = '';
+});
+
+function Backspace(){
+    if(runCalculation) return; //Disable Backspace 
+
+    if(operator){
+        if(num2.length > 0){
+            num2 = num2.substring(0, num2.length - 1);
+            // display.value = display.value.slice(0, -1);
+        }else{
+            operator = "";
+            // display.value = display.value.slice(0, -1);
+        }
+        console.log ('num2: ', num2);
+    }else{
+        if(num1.length > 0){ // 
+        // num1 = num1.substring(0, num1.length - 1);
+        // display.value = num1;
+        }
+        // console.log ('num1: ' , num1);
+        display.value = num1 + operator + num2;
+
+    }
 }
-);
+
+
+deleteBtn.addEventListener('click', Backspace);
 // let isOperator = false;
 
-let num1 = '';
-let num2 = '';
-let operator = '';
+
 
 // let arr =[];
 function pushValue(e){
     const value = e.target.textContent;
-    if(!operator){
-        num1 += value;
-    }else{
-        num2 += value;
+
+    if(runCalculation){
+        num1 = value;
+        num2 = '';
+        operator = '';
+        display.value = value;
+        runCalculation = false;
+    } else {
+        if(!operator){
+            num1 += value;
+        }else{
+            num2 += value;
+        }
+        // display.value += value;
     }
-    display.value += value;
+    display.value = num1 + operator + num2;
 }
 
 // function to check when the operator is clicked to assign num1 and num2 respectively
@@ -31,31 +71,42 @@ function checkOperatorClicked(e){
     const value = e.target.textContent;
     if( value === '='){
         operation();
-    }else{
+    } else {
         operator = value;
-        display.value += value;
+        // display.value += value;
     } 
+    display.value = num1 + operator + num2;
 }
+       
 
 
 function operation(){
-    const num1Value = parseFloat(num1);
-    const num2Value = parseFloat(num2);
+    let num1Value = parseFloat(num1).toFixed(2);
+    console.log(num1Value);
+    console.log(operator);
+    let num2Value = parseFloat(num2).toFixed(2);
+    console.log(num2Value);
+
+    // if(isNaN(num1Value) || isNaN(num2Value) || !operator){
+    //     display.value = "ERROR";
+    //     return;
+    // };
 
     if(operator === '+'){
             display.value = add(num1Value, num2Value);
     }else if(operator === '-'){
             display.value = sub(num1Value, num2Value);
     }else if(operator === '*'){
-            display.value = mul(num1Value, num2Value);
+            display.value = mul(num1Value, num2Value).toFixed(2);
     }else if(operator === '/'){
-            display.value = div(num1Value, num2Value);
+            display.value = div(num1Value, num2Value).toFixed(2);
     }
 
-    console.log(display.value);
-    num1 = '';
+    num1 = display.value;
     num2 = '';
     operator = '';
+
+    runCalculation = true;
 }
     
    
