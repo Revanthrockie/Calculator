@@ -2,15 +2,16 @@ let num1 = '';
 let num2 = '';
 let operator = '';
 let runCalculation = false;
+
 const ac = document.getElementById('ac');
 const display = document.getElementById('cScreen');
 const deleteBtn = document.getElementById('delete');
+const buttonClicked = document.querySelectorAll('button');   
 
 // AC - clears out entire value 
 const reset = document.getElementById('ac');
 reset.addEventListener('click', () => {
-    display.value = '';
-    console.log(display.value)
+    display.textContent = '';
     num1 = '';
     num2 = '';
     operator = '';
@@ -22,19 +23,19 @@ function Backspace(){
     if(operator){
         if(num2.length > 0){
             num2 = num2.substring(0, num2.length - 1);
-            display.value = display.value.slice(0, -1);
+            display.textContent = display.textContent.slice(0, -1);
         }else{
             operator = "";
-            display.value = display.value.slice(0, -1);
+            display.textContent = display.textContent.slice(0, -1);
         }
         console.log ('num2: ', num2);
     }else{
         if(num1.length > 0){ // 
         num1 = num1.substring(0, num1.length - 1);
-        display.value = num1;
+        display.textContent = num1;
         }
         console.log ('num1: ' , num1);
-        display.value = num1 + operator + num2;
+        display.textContent = num1 + operator + num2;
 
     }
 }
@@ -53,7 +54,7 @@ function pushValue(e){
         num1 = value;
         num2 = '';
         operator = '';
-        display.value = value;
+        display.textContent = value;
         runCalculation = false;
     } else {
         if(!operator){
@@ -61,9 +62,9 @@ function pushValue(e){
         }else{
             num2 += value;
         }
-        display.value += value;
+        display.textContent += value;
     }
-    display.value = num1 + operator + num2;
+    display.textContent = num1 + operator + num2;
 }
 
 // function to check when the operator is clicked to assign num1 and num2 respectively
@@ -73,39 +74,36 @@ function checkOperatorClicked(e){
         operation();
     } else {
         operator = value;
-        display.value += value;
+        display.textContent += value;
     } 
-    display.value = num1 + operator + num2;
+    // display.textContent = num1 + operator + num2;
 }
        
 
 
 function operation(){
-    let num1Value = parseFloat(num1).toFixed(2);
-    console.log(num1Value);
-    console.log(operator);
-    let num2Value = parseFloat(num2).toFixed(2);
-    console.log(num2Value);
+    let num1Value = Number(num1);
+    let num2Value = Number(num2);
 
-    // if(isNaN(num1Value) || isNaN(num2Value) || !operator){
-    //     display.value = "ERROR";
-    //     return;
-    // };
+    if(isNaN(num1Value) || isNaN(num2Value) || !operator){
+        display.value = "ERROR";
+        return;
+    };
 
-    if(operator === '+'){
-            display.value = add(num1Value, num2Value);
+        if(operator === '+'){
+        display.textContent = add(num1Value, num2Value);
+        console.log(display.textContent);
     }else if(operator === '-'){
-            display.value = sub(num1Value, num2Value);
-    }else if(operator === '*'){
-            display.value = mul(num1Value, num2Value).toFixed(2);
+        display.textContent = sub(num1Value, num2Value);
+    }else if(operator === 'x'){
+        display.textContent = mul(num1Value, num2Value).toFixed(2);
     }else if(operator === '/'){
-            display.value = div(num1Value, num2Value).toFixed(2);
+        display.textContent = div(num1Value, num2Value).toFixed(2);
     }
 
-    num1 = display.value;
+    num1 = display.textContent;
     num2 = '';
     operator = '';
-
     runCalculation = true;
 }
     
@@ -119,7 +117,7 @@ function sub(a , b){
 }
 
 function mul(a , b){
-    return a * b;
+    return ((a * b) * 100000000)/100000000;
 }
 
 function div(a , b){

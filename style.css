@@ -130,6 +130,10 @@ button{
 
 }
 
+button:active{
+    background-color: #454043;
+}
+
 /* footer --------------- */
 
 footer{
