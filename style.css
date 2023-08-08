@@ -10,7 +10,9 @@ body{
     padding: 0px;
     min-width: 100vh;
     min-height: 100vh;
-
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
 }
 
 header{
@@ -21,7 +23,7 @@ header{
 
 h1{
     text-align: center;
-    font-size: 50px;
+    font-size: 70px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -52,30 +54,41 @@ h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-}
-
-input{ 
-    background-color: bisque;
-    width: 99%;
+    flex-flow: column wrap;
     height: 100px;
-    text-align: right;
-    font-size: 50px;
-    padding: 20px;
-    margin-bottom: 4px;
+    background-color: bisque;
     border: 3px solid black;
     border-radius: 10px;
-    
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.scr{
+    width:100%;
+    border-radius: 10px;
+    text-align: right;
+    font-weight: lighter;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #454040;
+}
+
+#pScreen{
+    height: 30px;
+    font-size: 20px;
+}
+
+#cScreen{
+    height: 50px;
+    font-size: 40px;
 }
 
 /* screen - end ======= */
+
 /* ---- calculator BUttons */
 
 #ac{
     font-size: 14px;
     
-
-
 }
 .num{
     height: 500px;
@@ -110,10 +123,11 @@ input{
 button{
     font-size: 16px;
     font-style: oblique;
-    font-weight: 700;
+    font-weight: 1000;
     background-color: grey;
     border: 3px solid black;
     border-radius: 10px;
+
 }
 
 /* footer --------------- */
