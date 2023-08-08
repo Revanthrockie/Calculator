@@ -3,7 +3,7 @@ let num2 = '';
 let operator = '';
 let runCalculation = false;
 const ac = document.getElementById('ac');
-const display = document.getElementById('screen');
+const display = document.getElementById('cScreen');
 const deleteBtn = document.getElementById('delete');
 
 // AC - clears out entire value 
@@ -22,18 +22,18 @@ function Backspace(){
     if(operator){
         if(num2.length > 0){
             num2 = num2.substring(0, num2.length - 1);
-            // display.value = display.value.slice(0, -1);
+            display.value = display.value.slice(0, -1);
         }else{
             operator = "";
-            // display.value = display.value.slice(0, -1);
+            display.value = display.value.slice(0, -1);
         }
         console.log ('num2: ', num2);
     }else{
         if(num1.length > 0){ // 
-        // num1 = num1.substring(0, num1.length - 1);
-        // display.value = num1;
+        num1 = num1.substring(0, num1.length - 1);
+        display.value = num1;
         }
-        // console.log ('num1: ' , num1);
+        console.log ('num1: ' , num1);
         display.value = num1 + operator + num2;
 
     }
@@ -61,7 +61,7 @@ function pushValue(e){
         }else{
             num2 += value;
         }
-        // display.value += value;
+        display.value += value;
     }
     display.value = num1 + operator + num2;
 }
@@ -73,7 +73,7 @@ function checkOperatorClicked(e){
         operation();
     } else {
         operator = value;
-        // display.value += value;
+        display.value += value;
     } 
     display.value = num1 + operator + num2;
 }
