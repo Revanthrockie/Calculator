@@ -30,7 +30,7 @@ function Backspace(){
         console.log ('num2: ', num2);
     }else{
         if(num1.length > 0){ // 
-        // num1 = num1.substring(0, num1.length - 1);
+        num1 = num1.substring(0, num1.length - 1);
         // display.value = num1;
         }
         // console.log ('num1: ' , num1);
